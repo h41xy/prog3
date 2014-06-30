@@ -29,7 +29,7 @@ public class ProtGridFrame extends JFrame {
 
     // Folgender Teil ist fuer Jeden Button zu erstellen ---
     ProtGridButton buttonGeraet01 = new ProtGridButton("Geraet 1");
-    buttonGeraet01.addActionListener(new ActionButtonGeraet01());
+    buttonGeraet01.addActionListener(new ActionButtonGeraet());
     buttonGrid.add(buttonGeraet01);
     // bis hier --------------------------------------------
     // Es muessen (glaube ich) jeweils unterschiedliche ActionListener
@@ -43,7 +43,7 @@ public class ProtGridFrame extends JFrame {
     // den inhalt) ausser er wurde mit setActionCommand() veraendert
     
     ProtGridButton buttonGeraet02 = new ProtGridButton("Geraet 2");
-    buttonGeraet02.addActionListener(new ActionButtonGeraet01());
+    buttonGeraet02.addActionListener(new ActionButtonGeraet());
     buttonGrid.add(buttonGeraet02);
     buttonGrid.add(new ProtGridButton("Geraet 3"));
     buttonGrid.add(new ProtGridButton("Geraet 4"));
@@ -56,7 +56,7 @@ public class ProtGridFrame extends JFrame {
     setVisible(true);
   }
 
-  class ActionButtonGeraet01 implements ActionListener {
+  class ActionButtonGeraet implements ActionListener {
     public void actionPerformed (ActionEvent e) {
       String button = e.getActionCommand();
       if (button.equals("Geraet 1"))
