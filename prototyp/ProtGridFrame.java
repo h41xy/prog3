@@ -23,9 +23,8 @@ public class ProtGridFrame extends JFrame {
 
     textField = new JPanel(new FlowLayout());
     searchField = new JTextField("Suchen");
+    textField.add(searchField);
 
-    // Muss fuer die Realisierung in anderes Layout geaendert werden
-    // GridBagLayout
     buttonGrid = new JPanel(new ProtGridLayout());
 
     // Folgender Teil ist fuer Jeden Button zu erstellen ---
@@ -36,8 +35,16 @@ public class ProtGridFrame extends JFrame {
     // Es muessen (glaube ich) jeweils unterschiedliche ActionListener
     // fuer jeden Button implementiert werden. Vielleicht gehts aber auch
     // mit einer Abfrage welcher Button die Action ausgeloest hat.
+    // UPDATE:
+    // mit getSource() wird das object zurueck gegeben welches das actionEvent
+    // uasgeloest hat. Muss zurueck gecastet werden
+    // UPDATE02:
+    // mit getActionCommand() erhaelt man die BUttonbezeichnung (bei textfeldern)
+    // den inhalt) ausser er wurde mit setActionCommand() veraendert
     
-    buttonGrid.add(new ProtGridButton("Geraet 2"));
+    ProtGridButton buttonGeraet02 = new ProtGridButton("Geraet 2");
+    buttonGeraet02.addActionListener(new ActionButtonGeraet01());
+    buttonGrid.add(buttonGeraet02);
     buttonGrid.add(new ProtGridButton("Geraet 3"));
     buttonGrid.add(new ProtGridButton("Geraet 4"));
     buttonGrid.add(new ProtGridButton("Geraet 5"));
@@ -51,7 +58,11 @@ public class ProtGridFrame extends JFrame {
 
   class ActionButtonGeraet01 implements ActionListener {
     public void actionPerformed (ActionEvent e) {
-      System.out.println("Geraet01Frame");
+      String button = e.getActionCommand();
+      if (button.equals("Geraet 1"))
+          System.out.println("Geraet 1");
+      else if (button.equals("Geraet 2"))
+         System.out.println("Geraet 2");
       // Hier kommt Logik fuer die Darstellung des naechsten Frames
     }
   }
