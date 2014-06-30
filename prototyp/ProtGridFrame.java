@@ -5,10 +5,13 @@ import javax.swing.JTextField;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
 
 public class ProtGridFrame extends JFrame {
 
   Container contentPane;
+  JPanel textField;
   JTextField searchField;
   JPanel buttonGrid;
 
@@ -18,9 +21,11 @@ public class ProtGridFrame extends JFrame {
 
     contentPane = getContentPane();
 
+    textField = new JPanel(new FlowLayout());
     searchField = new JTextField("Suchen");
-    contentPane.add(searchField);
 
+    // Muss fuer die Realisierung in anderes Layout geaendert werden
+    // GridBagLayout
     buttonGrid = new JPanel(new ProtGridLayout());
 
     // Folgender Teil ist fuer Jeden Button zu erstellen ---
@@ -38,7 +43,8 @@ public class ProtGridFrame extends JFrame {
     buttonGrid.add(new ProtGridButton("Geraet 5"));
     buttonGrid.add(new ProtGridButton("Geraet 6"));
 
-    contentPane.add(buttonGrid);
+    contentPane.add(textField, BorderLayout.CENTER);
+    contentPane.add(buttonGrid, BorderLayout.SOUTH);
     pack();
     setVisible(true);
   }
