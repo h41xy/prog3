@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
+import javax.swing.SwingUtilities;
 
 public class ProtButtonGridFrame extends JFrame {
 
@@ -65,9 +66,12 @@ public class ProtButtonGridFrame extends JFrame {
   private class ActionButtonGeraet implements ActionListener {
     public void actionPerformed (ActionEvent e) {
       String button = e.getActionCommand();
-      if (button.equals("Geraet 1"))
+      ProtGridButton causeButton = (ProtGridButton) e.getSource();
+      ProtButtonGridFrame causeFrame = (ProtButtonGridFrame) SwingUtilities.getRoot(causeButton);
+      if (button.equals("Geraet 1")) {
           System.out.println("Geraet 1");
-      else if (button.equals("Geraet 2"))
+          causeFrame.setVisible(false);
+      } else if (button.equals("Geraet 2"))
          System.out.println("Geraet 2");
       else if (button.equals("Geraet 3"))
         System.out.println("Geraet 3");
