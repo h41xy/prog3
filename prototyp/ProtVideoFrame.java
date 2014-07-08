@@ -4,18 +4,20 @@ import javax.swing.WindowConstants;
 import java.awt.Container;
 
 public class ProtVideoFrame extends JFrame {
-  Container contentPane;
-  JPanel videoGrid;
+  private Container contentPane;
+  private JPanel videoGrid;
 
-  ProtVideoPlaceholder video1;
-  ProtVideoPlaceholder video2;
-  ProtVideoPlaceholder video3;
-  ProtVideoPlaceholder video4;
-  ProtVideoPlaceholder video5;
+  private ProtVideoPlaceholder video1;
+  private ProtVideoPlaceholder video2;
+  private ProtVideoPlaceholder video3;
+  private ProtVideoPlaceholder video4;
+  private ProtVideoPlaceholder video5;
+
+  private int frameID;
 
   public ProtVideoFrame () {
 
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
+    //setDefaultCloseOperation(EXIT_ON_CLOSE);
     contentPane = getContentPane();
 
     videoGrid = new JPanel(new ProtVideoGridLayout());
@@ -36,5 +38,13 @@ public class ProtVideoFrame extends JFrame {
 
     pack();
     setVisible(true);
+  }
+
+  public ProtVideoFrame(int newFrameID) {
+    frameID = newFrameID;
+    ProtVideoFrame();
+  }
+  public ProtVideoFrame getVideoFrame() {
+    return this;
   }
 }

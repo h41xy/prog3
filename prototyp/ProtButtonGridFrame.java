@@ -11,6 +11,13 @@ import javax.swing.SwingUtilities;
 
 public class ProtButtonGridFrame extends JFrame {
 
+  private static final String GERAET01 = "Geraet 1";
+  private static final String GERAET02 = "Geraet 2";
+  private static final String GERAET03 = "Geraet 3";
+  private static final String GERAET04 = "Geraet 4";
+  private static final String GERAET05 = "Geraet 5";
+  private static final String GERAET06 = "Geraet 6";
+
   Container contentPane;
   JPanel textField;
   JTextField searchField;
@@ -30,7 +37,7 @@ public class ProtButtonGridFrame extends JFrame {
     buttonGrid = new JPanel(new ProtGridLayout());
 
     // Folgender Teil ist fuer Jeden Button zu erstellen ---
-    ProtGridButton buttonGeraet01 = new ProtGridButton("Geraet 1");
+    ProtGridButton buttonGeraet01 = new ProtGridButton(GERAET01);
     buttonGeraet01.addActionListener(new ActionButtonGeraet());
     buttonGrid.add(buttonGeraet01);
     // bis hier --------------------------------------------
@@ -45,17 +52,17 @@ public class ProtButtonGridFrame extends JFrame {
     // mit getActionCommand() erhaelt man die BUttonbezeichnung (bei textfeldern)
     // den inhalt) ausser er wurde mit setActionCommand() veraendert
     
-    ProtGridButton buttonGeraet02 = new ProtGridButton("Geraet 2");
+    ProtGridButton buttonGeraet02 = new ProtGridButton(GERAET02);
     buttonGeraet02.addActionListener(new ActionButtonGeraet());
     buttonGrid.add(buttonGeraet02);
 
-    ProtGridButton buttonGeraet03 = new ProtGridButton("Geraet 3");
+    ProtGridButton buttonGeraet03 = new ProtGridButton(GERAET03);
     buttonGeraet03.addActionListener(new ActionButtonGeraet());
     buttonGrid.add(buttonGeraet03);
 
-    buttonGrid.add(new ProtGridButton("Geraet 4"));
-    buttonGrid.add(new ProtGridButton("Geraet 5"));
-    buttonGrid.add(new ProtGridButton("Geraet 6"));
+    buttonGrid.add(new ProtGridButton(GERAET04));
+    buttonGrid.add(new ProtGridButton(GERAET05));
+    buttonGrid.add(new ProtGridButton(GERAET06));
 
     contentPane.add(textField, BorderLayout.NORTH);
     contentPane.add(buttonGrid, BorderLayout.CENTER);
@@ -63,18 +70,23 @@ public class ProtButtonGridFrame extends JFrame {
     setVisible(true);
   }
 
+  public ProtButtonGridFrame getButtonGridFrame() {
+    return this;
+  }
+
   private class ActionButtonGeraet implements ActionListener {
     public void actionPerformed (ActionEvent e) {
       String button = e.getActionCommand();
       ProtGridButton causeButton = (ProtGridButton) e.getSource();
       ProtButtonGridFrame causeFrame = (ProtButtonGridFrame) SwingUtilities.getRoot(causeButton);
-      if (button.equals("Geraet 1")) {
-          System.out.println("Geraet 1");
-          causeFrame.setVisible(false);
-      } else if (button.equals("Geraet 2"))
-         System.out.println("Geraet 2");
-      else if (button.equals("Geraet 3"))
-        System.out.println("Geraet 3");
+      if (button.equals(GERAET01)) {
+          System.out.println(GERAET01);
+          //causeFrame.setVisible(false);
+          ProtVideoFrame vidFrame = new ProtVideoFrame();
+      } else if (button.equals(GERAET02))
+         System.out.println(GERAET02);
+      else if (button.equals(GERAET03))
+        System.out.println(GERAET03);
       else
         System.out.println(button);
 
