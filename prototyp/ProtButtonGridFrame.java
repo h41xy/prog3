@@ -18,12 +18,15 @@ public class ProtButtonGridFrame extends JFrame {
   private static final String GERAET05 = "Geraet 5";
   private static final String GERAET06 = "Geraet 6";
 
-  Container contentPane;
-  JPanel textField;
-  JTextField searchField;
-  JPanel buttonGrid;
+  private Container contentPane;
+  private JPanel textField;
+  private JTextField searchField;
+  private JPanel buttonGrid;
 
-  protected ProtButtonGridFrame() {
+  private Prototyp controller;
+
+  protected ProtButtonGridFrame(Prototyp controllingObject) {
+    controller = controllingObject;
 
     setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -74,20 +77,29 @@ public class ProtButtonGridFrame extends JFrame {
     return this;
   }
 
+  public Prototyp getController() {
+    return controller;
+  }
+
   private class ActionButtonGeraet implements ActionListener {
     public void actionPerformed (ActionEvent e) {
       String button = e.getActionCommand();
       ProtGridButton causeButton = (ProtGridButton) e.getSource();
       ProtButtonGridFrame causeFrame = (ProtButtonGridFrame) SwingUtilities.getRoot(causeButton);
+      Prototyp controller = causeFrame.getController();
       if (button.equals(GERAET01)) {
           System.out.println(GERAET01);
-          //causeFrame.setVisible(false);
-          ProtVideoFrame vidFrame = new ProtVideoFrame();
-      } else if (button.equals(GERAET02))
+          causeFrame.setVisible(false);
+          controller.getVideoFrameByID(0).setVisible(true);
+      } else if (button.equals(GERAET02)) {
          System.out.println(GERAET02);
-      else if (button.equals(GERAET03))
+          causeFrame.setVisible(false);
+          controller.getVideoFrameByID(1).setVisible(true);
+      } else if (button.equals(GERAET03)) {
         System.out.println(GERAET03);
-      else
+          causeFrame.setVisible(false);
+          controller.getVideoFrameByID(2).setVisible(true);
+      } else
         System.out.println(button);
 
       // Hier kommt Logik fuer die Darstellung des naechsten Frames

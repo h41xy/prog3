@@ -1,10 +1,13 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 import java.awt.Container;
+import java.awt.BorderLayout;
 
 public class ProtVideoFrame extends JFrame {
   private Container contentPane;
+  private JLabel geraet;
   private JPanel videoGrid;
 
   private ProtVideoPlaceholder video1;
@@ -15,10 +18,12 @@ public class ProtVideoFrame extends JFrame {
 
   private int frameID;
 
-  public ProtVideoFrame () {
+  public ProtVideoFrame (String newFrameLabel) {
 
-    //setDefaultCloseOperation(EXIT_ON_CLOSE);
+    setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     contentPane = getContentPane();
+    
+    geraet = new JLabel(newFrameLabel);
 
     videoGrid = new JPanel(new ProtVideoGridLayout());
 
@@ -33,16 +38,22 @@ public class ProtVideoFrame extends JFrame {
     videoGrid.add(video3);
     videoGrid.add(video4);
     videoGrid.add(video5);
-
-    contentPane.add(videoGrid);
+    
+    if (geraet != null)
+      contentPane.add(geraet, BorderLayout.NORTH);
+    contentPane.add(videoGrid, BorderLayout.CENTER);
 
     pack();
-    setVisible(true);
+    //setVisible(true);
   }
 
-  public ProtVideoFrame(int newFrameID) {
+  public ProtVideoFrame(int newFrameID, String newFrameLabel) {
+    this(newFrameLabel);
     frameID = newFrameID;
-    ProtVideoFrame();
+  }
+
+  public int getFrameID() {
+    return this.frameID;
   }
   public ProtVideoFrame getVideoFrame() {
     return this;
