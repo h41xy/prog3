@@ -11,12 +11,12 @@ import javax.swing.SwingUtilities;
 
 public class ProtButtonGridFrame extends JFrame {
 
-  private static final String GERAET01 = "Geraet 1";
-  private static final String GERAET02 = "Geraet 2";
-  private static final String GERAET03 = "Geraet 3";
-  private static final String GERAET04 = "Geraet 4";
-  private static final String GERAET05 = "Geraet 5";
-  private static final String GERAET06 = "Geraet 6";
+  private static final String GERAET01 = "Boden";
+  private static final String GERAET02 = "Pauschenpferd";
+  private static final String GERAET03 = "Ringe";
+  private static final String GERAET04 = "Sprung";
+  private static final String GERAET05 = "Barren";
+  private static final String GERAET06 = "Reck";
 
   private Container contentPane;
   private JPanel textField;
