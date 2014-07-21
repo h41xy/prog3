@@ -1,12 +1,14 @@
+package src.main;
+
 import java.awt.GridLayout;
 
 
-public class ProtGridLayout extends GridLayout {
+public class ProtVideoGridLayout extends GridLayout {
 
 private static final int COLUMNCOUNT = 3;
 private static final int ROWCOUNT = 2;
 
-  ProtGridLayout() {
+  ProtVideoGridLayout() {
     this.setColumns(COLUMNCOUNT);
     this.setRows(ROWCOUNT);
 

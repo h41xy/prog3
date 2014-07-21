@@ -1,3 +1,5 @@
+package src.main;
+
 import javax.swing.JButton;
 import java.awt.Dimension;
 
