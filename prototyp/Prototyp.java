@@ -10,7 +10,7 @@ public class Prototyp implements WindowListener {
 
   public Prototyp () {
     for (int i = 0; i < VIDFRAMECOUNT; i++) {
-      videoFrameArr[i] = new ProtVideoFrame(videoFrameIDIndex++, Integer.toString(videoFrameIDIndex));
+      videoFrameArr[i] = new ProtVideoFrame(videoFrameIDIndex++, Integer.toString(videoFrameIDIndex), this);
       videoFrameArr[i].addWindowListener(this);
       System.out.println("New VidFrame in Arr ID: " + (videoFrameIDIndex - 1));
     }
@@ -28,6 +28,10 @@ public class Prototyp implements WindowListener {
     //Exception unso
     System.out.println("Not Found. Return Null.");
     return null;
+  }
+
+  public ProtButtonGridFrame getButtonFrame() {
+    return buttonFrame;
   }
 
   public void windowDeactivated(WindowEvent e) {}

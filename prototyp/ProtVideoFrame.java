@@ -1,20 +1,30 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JButton;
 import javax.swing.WindowConstants;
+import javax.swing.SwingUtilities;
 import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ProtVideoFrame extends JFrame {
   private Container contentPane;
   private JLabel geraet;
+  private JPanel homeRow;
   private JPanel videoGrid;
+
+  private JButton homeButton;
 
   private ProtVideoPlaceholder video1;
   private ProtVideoPlaceholder video2;
   private ProtVideoPlaceholder video3;
   private ProtVideoPlaceholder video4;
   private ProtVideoPlaceholder video5;
+
+  private Prototyp controller;
 
   private int frameID;
 
@@ -24,6 +34,13 @@ public class ProtVideoFrame extends JFrame {
     contentPane = getContentPane();
     
     geraet = new JLabel(newFrameLabel);
+    homeRow = new JPanel(new FlowLayout());
+
+    homeButton = new JButton("Home");
+    homeButton.addActionListener(new ActionButtonHome());
+
+    homeRow.add(geraet);
+    homeRow.add(homeButton);
 
     videoGrid = new JPanel(new ProtVideoGridLayout());
 
@@ -39,16 +56,16 @@ public class ProtVideoFrame extends JFrame {
     videoGrid.add(video4);
     videoGrid.add(video5);
     
-    if (geraet != null)
-      contentPane.add(geraet, BorderLayout.NORTH);
+    contentPane.add(homeRow, BorderLayout.NORTH);
     contentPane.add(videoGrid, BorderLayout.CENTER);
 
     pack();
     //setVisible(true);
   }
 
-  public ProtVideoFrame(int newFrameID, String newFrameLabel) {
+  public ProtVideoFrame(int newFrameID, String newFrameLabel, Prototyp controllingObject) {
     this(newFrameLabel);
+    controller = controllingObject;
     frameID = newFrameID;
   }
 
@@ -57,5 +74,24 @@ public class ProtVideoFrame extends JFrame {
   }
   public ProtVideoFrame getVideoFrame() {
     return this;
+  }
+
+  public Prototyp getController() {
+    // if not null
+    return controller;
+  }
+
+  private class ActionButtonHome implements ActionListener {
+    public void actionPerformed (ActionEvent e) {
+      String button = e.getActionCommand();
+      JButton causeButton = (JButton) e.getSource();
+      ProtVideoFrame causeFrame = (ProtVideoFrame) SwingUtilities.getRoot(causeButton);
+      Prototyp controller = causeFrame.getController();
+      
+      causeFrame.setVisible(false);
+      controller.getButtonFrame().setVisible(true);
+
+      // Hier kommt Logik fuer die Darstellung des naechsten Frames
+    }
   }
 }
